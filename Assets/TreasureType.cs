@@ -1,0 +1,80 @@
+public enum TreasureType
+{
+    // 1 star
+
+    Shoe,
+    Katana,
+    Ax,
+    PetBowl,
+    Emptycans,
+    CeramicVase,
+    WalkieTalkie,
+    Doll,
+    WaterBottle,
+    CaptainHat,
+    DriftingBottle,
+    TobaccoPipe,
+    Clinch,
+    ImitationWoodenLegs,
+    Denture,
+    PocketWatch,
+    HurricaneLamp,
+    SteelBucket,
+    Whisky,
+    Camera,
+    ShortKnife,
+    Periscope,
+    Micro,
+    Mask,
+    Helm,
+    BaseballBat,
+    Hourglass,
+    Safe,
+    WoodenBox,
+    Anchor,
+
+    // 2 star
+
+    BronzeBell,
+    Timepiece,
+    Torpedo,
+    MagicHat,
+    MusicBox,
+    ElectricGuitar,
+    CrystalBall,
+    Mailbox,
+    FireHydrant,
+    Drone,
+    BloodCage,
+    DecorativeSkull,
+    WoodenSoldier,
+    PortraitPhoto,
+    RadarBroken,
+    Robot,
+    DivingBell,
+    ScrapSubmarine,
+    Motorbike,
+    Aircraft,
+
+    // 3 star
+
+    Crown,
+    MagicLamp,
+    ArmorePoliceCar,
+    Microscope,
+    GoldenStatue,
+    Globe,
+    PhonographRecordPlayer,
+    ShipInBottle,
+    SextantGlass,
+    MafiaHat,
+
+    // Chest
+
+    Chest,
+    CeramicChest,
+    WeaponChest,
+    GoldenChest,
+    GemChest,
+    JewelryChest
+}
