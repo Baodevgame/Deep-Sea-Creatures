@@ -35,7 +35,13 @@ Explore the deep sea, discover unique marine creatures, upgrade your fishing equ
 
 ## 📸 Screenshots
 
-//
+<img width="1672" height="941" alt="1 (2)" src="https://github.com/user-attachments/assets/416037ac-8cbe-4371-ba0d-6778409a50fa" />
+<img width="1672" height="941" alt="1 (7)" src="https://github.com/user-attachments/assets/8358b462-c53d-487d-9740-a053299e37a1" />
+<img width="1672" height="941" alt="1 (6)" src="https://github.com/user-attachments/assets/bd1c8507-64b7-4628-b528-e5878b4e27ab" />
+<img width="1672" height="941" alt="1 (5)" src="https://github.com/user-attachments/assets/dbdea0ca-1f7b-4d4d-8618-e7617c5efa30" />
+<img width="1672" height="941" alt="1 (4)" src="https://github.com/user-attachments/assets/2dbe97c8-7006-4a5f-aa6a-7805cb6519bc" />
+<img width="941" height="1672" alt="1 (3)" src="https://github.com/user-attachments/assets/519dce25-7106-42b8-a7e7-2b8a002060a0" />
+
 
 ---
 
