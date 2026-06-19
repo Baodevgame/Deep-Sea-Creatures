@@ -47,7 +47,7 @@ Explore the deep sea, discover unique marine creatures, upgrade your fishing equ
 
 ## 🚀 Google Play
 
-https://play.google.com/store/apps/details?id=com.baopham.seacreatures
+Coming Soon on Google Play Store.
 
 ---
 
