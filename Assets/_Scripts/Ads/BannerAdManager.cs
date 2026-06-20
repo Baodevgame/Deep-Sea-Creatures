@@ -4,7 +4,8 @@ using GoogleMobileAds.Api;
 public class BannerAdManager : MonoBehaviour
 {
     public static BannerAdManager Instance;
-
+    private bool isLoaded;
+    private bool isLoading;
     [SerializeField]
     private AdsSettings adsSettings;
 
@@ -40,32 +41,47 @@ public class BannerAdManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        InvokeRepeating(nameof(CheckInitialization), 0f, 1f);
-    }
+    //private void Start()
+    //{
+    //    InvokeRepeating(nameof(CheckInitialization), 0f, 1f);
+    //}
 
-    private void CheckInitialization()
+    //private void CheckInitialization()
+    //{
+    //    if (!AdsInitializer.IsInitialized)
+    //        return;
+
+    //    CancelInvoke(nameof(CheckInitialization));
+
+    //    LoadBanner();
+    //}
+
+    //==================== LOAD ====================
+
+    private void LoadBanner()
     {
-        if (!AdsInitializer.IsInitialized)
+        if (isLoading)
             return;
 
-        CancelInvoke(nameof(CheckInitialization));
+        isLoading = true;
 
-        LoadBanner();
-    }
-
-    public void LoadBanner()
-    {
         DestroyBanner();
 
-        AdSize adSize = AdSize.GetCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);
+        AdSize adSize =
+            AdSize.GetCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(
+                AdSize.FullWidth);
 
-        bannerView = new BannerView(BannerId,adSize,AdPosition.Bottom);
+        bannerView =
+            new BannerView(
+                BannerId,
+                adSize,
+                AdPosition.Bottom);
 
         RegisterEvents();
 
         AdRequest request = new AdRequest();
+
+        Debug.Log("Loading Banner...");
 
         bannerView.LoadAd(request);
     }
@@ -76,46 +92,67 @@ public class BannerAdManager : MonoBehaviour
         {
             Debug.Log("Banner Loaded");
 
+            isLoading = false;
+            isLoaded = true;
             retryDelay = 5f;
 
-            bannerView.Hide();
+            bannerView.Show();
         };
 
         bannerView.OnBannerAdLoadFailed += (LoadAdError error) =>
         {
-            Debug.LogError($"Banner Load Failed : {error}");
+            Debug.LogError("Banner Failed : " + error);
+
+            isLoading = false;
+            isLoaded = false;
 
             Invoke(nameof(LoadBanner), retryDelay);
 
-            retryDelay = Mathf.Min(retryDelay * 2f,MAX_RETRY_DELAY);
-        };
-
-        bannerView.OnAdPaid += (AdValue value) =>
-        {
-            Debug.Log($"Banner Revenue : {value.Value} {value.CurrencyCode}");
+            retryDelay =
+                Mathf.Min(
+                    retryDelay * 2f,
+                    MAX_RETRY_DELAY);
         };
     }
 
+    //==================== SHOW ====================
+
     public void ShowBanner()
     {
-        Debug.Log("ShowBanner Called");
+        if (!AdsInitializer.IsInitialized)
+        {
+            Debug.Log("AdMob Not Initialized");
+            return;
+        }
 
         if (bannerView == null)
         {
-            Debug.Log("Banner NULL");
+            Debug.Log("Load First Banner");
             LoadBanner();
             return;
         }
 
-        Debug.Log("Banner Show");
+        if (isLoaded)
+        {
+            Debug.Log("Show Banner");
 
-        bannerView.Show();
+            bannerView.Show();
+        }
     }
+
+    //==================== HIDE ====================
 
     public void HideBanner()
     {
-        bannerView?.Hide();
+        if (bannerView != null)
+        {
+            Debug.Log("Hide Banner");
+
+            bannerView.Hide();
+        }
     }
+
+    //==================== DESTROY ====================
 
     public void DestroyBanner()
     {
@@ -124,6 +161,9 @@ public class BannerAdManager : MonoBehaviour
             bannerView.Destroy();
             bannerView = null;
         }
+
+        isLoaded = false;
+        isLoading = false;
     }
 
     private void OnDestroy()
